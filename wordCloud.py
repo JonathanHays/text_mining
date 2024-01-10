@@ -6,7 +6,7 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 import os
 
-excel_file_path = 'C:\\TestCode\\csat\\sampleData.xlsx'
+excel_file_path = 'C:\\TestCode\\csat\\sampleMachineData.xlsx'
 
 # Creating a DataFrame
 df = pd.read_excel(excel_file_path)
@@ -21,7 +21,7 @@ def preprocess_text(text):
     words = [word.lower() for word in words if word.isalpha() and word.lower() not in stop_words]
     return words
 
-df['Tokenized'] = df['Responses'].apply(preprocess_text)
+df['Tokenized'] = df['response'].apply(preprocess_text)
 
 # Counting word occurrences
 word_counts = {}

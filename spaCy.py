@@ -6,13 +6,13 @@ from collections import Counter
 nlp = spacy.load("en_core_web_sm")
 
 # Example DataFrame creation (replace this with your actual data)
-excel_file_path = 'C:\TestCode\csat\sampleData.xlsx'
+excel_file_path = 'C:\TestCode\csat\sampleMachineData.xlsx'
 
 # Creating a DataFrame
 df = pd.read_excel(excel_file_path)
 
 # Process each response with SpaCy
-df['SpacyDoc'] = df['Responses'].apply(nlp)
+df['SpacyDoc'] = df['response'].apply(nlp)
 
 # Named Entity Recognition (NER) Example
 entities = []
