@@ -5,7 +5,7 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
 # Load your dataset (replace this with your actual data)
-excel_file_path = 'C:\\TestCode\\csat\\sampleMachineData.xlsx'
+excel_file_path = 'C:\\TestCode\\csat\\excel\\sampleMachineData.xlsx'
 df = pd.read_excel(excel_file_path)
 
 

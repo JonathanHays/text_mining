@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 fake = Faker()
 
-excel_file_path = "C:\\TestCode\\csat\\cannedResponses.xlsx"
+excel_file_path = "C:\\TestCode\\csat\\excel\\cannedResponses.xlsx"
 
 # Read the Excel file into a DataFrame
 df = pd.read_excel(excel_file_path)
@@ -87,5 +87,5 @@ fake_tickets = generate_fake_data(num_fake_tickets)
 df = pd.DataFrame(fake_tickets)
 
 # Save the DataFrame to an Excel file
-excel_file_path = "C:\\TestCode\\csat\\sampleCustomerChatData.xlsx"
+excel_file_path = "C:\\TestCode\\csat\\excel\\sampleCustomerChatData.xlsx"
 df.to_excel(excel_file_path, index=False)

@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 # Load your dataset
 # Assuming your dataset has a 'Response' column with the text and a 'rating' column with sentiment scores
 # Replace 'your_dataset.csv' with the actual file path or data loading method you are using
-excel_file_path = 'C:\\TestCode\\csat\\sampleMachineData.xlsx'
+excel_file_path = 'C:\\TestCode\\csat\\excel\\sampleMachineData.xlsx'
 df = pd.read_excel(excel_file_path)
 
 

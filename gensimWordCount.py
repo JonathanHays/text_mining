@@ -9,7 +9,7 @@ from pprint import pprint
 
 # Assuming you have a 'Responses' column in your DataFrame
 # Replace 'your_dataset.csv' with the actual file path or data loading method you are using
-excel_file_path = 'C:\\TestCode\\csat\\sampleMachineData.xlsx'
+excel_file_path = 'C:\\TestCode\\csat\\excel\\sampleMachineData.xlsx'
 df = pd.read_excel(excel_file_path)
 
 # Tokenizing and removing stopwords

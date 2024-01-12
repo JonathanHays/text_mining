@@ -31,7 +31,7 @@ timestamps = [fake.date_time_between(start_date, end_date).strftime("%Y-%m-%d %H
 df = pd.DataFrame({'response': responses, 'rating': ratings, 'timestamp': timestamps})
 
 # Specify the export path for the Excel file
-export_path = 'C:\\TestCode\\csat\\sampleMachineData.xlsx'
+export_path = 'C:\\TestCode\\csat\\excel\\sampleMachineData.xlsx'
 
 # Save the DataFrame to an Excel file with the specified export path
 df.to_excel(export_path, index=False, engine='openpyxl')

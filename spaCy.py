@@ -6,7 +6,7 @@ from collections import Counter
 nlp = spacy.load("en_core_web_sm")
 
 # Example DataFrame creation (replace this with your actual data)
-excel_file_path = 'C:\TestCode\csat\sampleMachineData.xlsx'
+excel_file_path = 'C:\TestCode\csat\excel\sampleMachineData.xlsx'
 
 # Creating a DataFrame
 df = pd.read_excel(excel_file_path)

@@ -7,8 +7,11 @@ import string
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 import os
+import numpy as np
+from PIL import Image
+import random
 
-excel_file_path = 'C:\\TestCode\\csat\\sampleCustomerChatData.xlsx'
+excel_file_path = 'C:\\TestCode\\csat\\excel\\sampleCustomerChatData.xlsx'
 
 # Creating a DataFrame
 df = pd.read_excel(excel_file_path)
@@ -50,18 +53,60 @@ word_counts.columns = ['WordAndSentiment', 'Count']
 word_counts[['Word', 'Sentiment']] = pd.DataFrame(word_counts['WordAndSentiment'].tolist(), index=word_counts.index)
 
 # Creating a Word Cloud
-
 all_words = ' '.join(word_counts['Word'].astype(str))
-wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_words)
+d = 'C:\\TestCode\\csat\\cash_app.jpg'
+mask = np.array(Image.open(os.path.join(d)))
+def grey_color_func(word, font_size, position, orientation, random_state=None,
+                    **kwargs):
+    return "hsl(0, 0%%, %d%%)" % random.randint(60, 100)
+
+
+#wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_words)
+wc = WordCloud( mask=mask,background_color='#048c2c', 
+               random_state=1).generate(all_words)
+
+#margin=5, contour_color='#023075',contour_width=1
+default_colors = wc.to_array()
+plt.figure(figsize=(30,20), facecolor='k')
+plt.imshow(wc.recolor(color_func=grey_color_func, random_state=3),
+           interpolation="bilinear")
+plt.axis("off")
+plt.tight_layout(pad=0)
+plt.show()
+wc.to_file("wordCloud.png")
+
+
+plt.figure(figsize=(20,10), facecolor='k')
+plt.imshow(default_colors, interpolation="bilinear")
+plt.axis("off")
+
+
+# positive_responses = word_counts[word_counts['Sentiment'] > 0]
+# all_words_positive = ' '.join(positive_responses['Word'].astype(str))
+# wordcloud1 = WordCloud(width=800, height=400, background_color='green').generate(all_words_positive)
+
+# negative_responses = word_counts[word_counts['Sentiment'] < 0]
+# all_words_negative = ' '.join(negative_responses['Word'].astype(str))
+# wordcloud2 = WordCloud(width=800, height=400, background_color='red').generate(all_words_negative)
 
 # Plotting the Word Cloud
-plt.figure(figsize=(10, 5))
-plt.imshow(wordcloud, interpolation='bilinear')
-plt.axis('off')
-plt.show()
+# plt.figure(figsize=(10, 5))
+# plt.imshow(wordcloud, interpolation='bilinear')
+# plt.axis('off')
+# plt.show()
+
+# plt.figure(figsize=(10, 5))
+# plt.imshow(wordcloud1, interpolation='bilinear')
+# plt.axis('off')
+# plt.show()
+
+# plt.figure(figsize=(10, 5))
+# plt.imshow(wordcloud2, interpolation='bilinear')
+# plt.axis('off')
+# plt.show()
 
 # Export Word Counts and Sentiment Scores to Excel with a specific style
-output_excel_path = 'C:\\TestCode\\csat\\word_counts_and_sentiments.xlsx'
+output_excel_path = 'C:\\TestCode\\csat\\excel\\word_counts_and_sentiments.xlsx'
 
 # Check if the file exists and remove it
 if os.path.exists(output_excel_path):

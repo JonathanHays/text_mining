@@ -15,7 +15,7 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
 # Sample data
-excel_file_path = 'C:\\TestCode\\csat\\sampleMachineData.xlsx'
+excel_file_path = 'C:\\TestCode\\csat\\excel\\sampleMachineData.xlsx'
 
 # Load data from Excel file
 df = pd.read_excel(excel_file_path)
