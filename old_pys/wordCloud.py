@@ -3,7 +3,6 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from afinn import Afinn
-import string
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 import os
@@ -11,7 +10,7 @@ import numpy as np
 from PIL import Image
 import random
 
-excel_file_path = 'C:\\TestCode\\csat\\excel\\sampleCustomerChatData.xlsx'
+excel_file_path = 'C:\\TestCode\\csat\\excel\\sampleData\\sampleCustomerChatData.xlsx'
 
 # Creating a DataFrame
 df = pd.read_excel(excel_file_path)
@@ -24,7 +23,7 @@ stop_words = set(stopwords.words('english'))
 # Create an Afinn object
 afinn = Afinn()
 
-def preprocess_text(text):
+def preprocess_single_word(text):
     # Check if text is a string or convert to string
     if not isinstance(text, str) or pd.isna(text):
         return []  # Return an empty list for NaN values
@@ -33,14 +32,14 @@ def preprocess_text(text):
     words = word_tokenize(text)
     
     # Remove stopwords and filter out punctuation and single quotes
-    words = [word for word in words if word.lower() not in stop_words and word.isalpha() and word not in string.punctuation and word != "'"]
+    words = [word for word in words if word.lower() not in stop_words and word.isalpha()]
     
     # Calculate sentiment score for each word
     word_sentiments = [afinn.score(word) for word in words]
     
     return list(zip(words, word_sentiments))
 
-df['WordAndSentiment'] = df['chat_survey_response'].apply(preprocess_text)
+df['WordAndSentiment'] = df['chat_survey_response'].apply(preprocess_single_word)
 
 # Filter out rows where 'WordAndSentiment' is empty
 df_exploded = df.explode('WordAndSentiment').dropna(subset=['WordAndSentiment'])
@@ -54,7 +53,7 @@ word_counts[['Word', 'Sentiment']] = pd.DataFrame(word_counts['WordAndSentiment'
 
 # Creating a Word Cloud
 all_words = ' '.join(word_counts['Word'].astype(str))
-d = 'C:\\TestCode\\csat\\cash_app.jpg'
+d = 'C:\\TestCode\\csat\\images\\cash_app.jpg'
 mask = np.array(Image.open(os.path.join(d)))
 def grey_color_func(word, font_size, position, orientation, random_state=None,
                     **kwargs):
@@ -62,8 +61,7 @@ def grey_color_func(word, font_size, position, orientation, random_state=None,
 
 
 #wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_words)
-wc = WordCloud( mask=mask,background_color='#048c2c', 
-               random_state=1).generate(all_words)
+wc = WordCloud( mask=mask,background_color='#048c2c', random_state=1).generate(all_words)
 
 #margin=5, contour_color='#023075',contour_width=1
 default_colors = wc.to_array()

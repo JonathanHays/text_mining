@@ -28,8 +28,8 @@ def process_chat_data(input_path, output_path):
     results_df.to_excel(output_path, index=False)
     print("1")
 # File paths
-input_path = 'C:\\TestCode\\csat\\excel\\sampleCustomerChatData.xlsx'
-output_path = 'C:\\TestCode\\csat\\excel\\higgingAnalysis_sentiment.xlsx'
+input_path = 'C:\\TestCode\\csat\\sampleData\\test.xlsx'
+output_path = 'C:\\TestCode\\csat\\higgingAnalysis_sentiment.xlsx'
 
 # Process chat data and output results
 process_chat_data(input_path, output_path)
