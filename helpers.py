@@ -21,7 +21,7 @@ from PIL import Image
 from collections import Counter
 import string
 from transformers import pipeline
-
+from tqdm import tqdm
 ###common variables
 
 nltk.download('stopwords')
@@ -119,8 +119,10 @@ def analyze_response_sentiment(text):
     
     
 def process_chat_data(df, output_excel_path):
+    
     print("Running Response Text Analysis")
-    df['sentiment_score'] = df['chat_survey_response'].apply(analyze_response_sentiment)
+    tqdm.pandas(desc="Applying Sentiment Analysis")
+    df['sentiment_score'] = df['chat_survey_response'].progress_apply(analyze_response_sentiment)
     #results_df = df[['chat_transcript_id', 'sentiment_score']].copy()
     df.name = 'Response Sentiment Rating'
     excel_output(df, output_excel_path)
