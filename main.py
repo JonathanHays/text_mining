@@ -9,10 +9,12 @@ import pandas as pd
 from datetime import datetime
 
 ## directories
-input_dir = 'C:\\TestCode\\csat\\sampleData\\'
-input_image_dir = 'C:\\TestCode\\csat\\images\\'
-output_dir = 'C:\\TestCode\\csat\\outputData\\'
-
+#input_dir = 'C:\\TestCode\\csat\\sampleData\\'
+#input_image_dir = 'C:\\TestCode\\csat\\images\\'
+#output_dir = 'C:\\TestCode\\csat\\outputData\\'
+input_dir = '/workspaces/text_mining/sampleData/'
+input_image_dir = '/workspaces/text_mining/images/'
+output_dir = '/workspaces/text_mining/outputData/'
 # inputs
 input_excel = 'sampleCustomerChatData.xlsx'
 response_column_name = 'chat_survey_response'
